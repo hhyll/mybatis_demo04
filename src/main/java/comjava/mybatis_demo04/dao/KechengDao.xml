@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace="org.mybatis.example.BlogMapper"这个用的是接口的全限定名称-->
+<mapper namespace="comjava.mybatis_demo04.dao.KechengDao">
+    <select id="selectKekeng" resultType="comjava.mybatis_demo04.daomain.Kecheng">
+    select xuhao,keche,ssid from kecheng order by xuhao
+  </select>
+
+    <insert id="insertKecheng">
+        insert into kecheng values(#{xuhao},#{keche},#{ssid})
+    </insert>
+</mapper>

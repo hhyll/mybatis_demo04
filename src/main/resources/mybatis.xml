@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration><!--以下配置都是按照顺序排的-->
+
+    <!--加载文件，获取里面的值-->
+    <properties resource="jdbc.properties"/>
+
+    <!--加入打印日志的配置‘-->
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+
+    <!--定义别名-->
+    <typeAliases>
+        <!--type=""这个是定义别名的全限定名称。alias=""这是全限定名称的别名-->
+      <!-- 这是第一种定义别名的方式
+       <typeAlias type="" alias=""/>
+        <typeAlias type="" alias=""/>-->
+        <!--<package name=""/>这是第二种配置别名的方式
+        name=""这里写的是包名（路径），这个包类所有的类名酒就是该类的别名（这个类名不区分大小写)
+        -->
+        <package name=""/>
+    </typeAliases>
+
+    <!--配置分页-->
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageHelper"></plugin>
+    </plugins>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/><!--${jdbc.driver}-->
+                <property name="url" value="jdbc:mysql://localhost:3306/mydb"/><!--${jdbc.url}-->
+                <property name="username" value="root"/><!--${jdbc.user}-->
+                <property name="password" value="root"/><!--${jdbc.passwd}-->
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="comjava/mybatis_demo04/dao/KechengDao.xml"/><!--这是配置单个或xml文件很少是可以这么配置-->
+        <!--<package name="comjava.mybatis_demo04.mapper"/>这是配置扫描多个（KechengDao.xml）xml的文件，这是项目中xml文件很多时-->
+    </mappers>
+</configuration>
